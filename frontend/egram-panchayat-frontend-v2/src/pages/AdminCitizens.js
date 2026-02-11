@@ -3,7 +3,7 @@ import api from "../api/axiosConfig";
 import Navbar from "../components/Navbar";
 import "../styles/admin-citizens.css";
 
-// ✅ Excel export libs
+
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 
@@ -29,7 +29,7 @@ function AdminCitizens() {
     }
   };
 
-  // ✅ EXCEL EXPORT (NO UI CHANGE)
+ 
   const exportExcel = () => {
     const data = citizens.map(c => ({
       ID: c.id,
@@ -67,7 +67,7 @@ function AdminCitizens() {
 
             <div className="admin-citizen-body">
 
-              {/* ✅ EXPORT BUTTON (SMALL, NON-INTRUSIVE) */}
+
               <div className="text-end mb-3">
                 <button
                   className="btn btn-success btn-sm"
