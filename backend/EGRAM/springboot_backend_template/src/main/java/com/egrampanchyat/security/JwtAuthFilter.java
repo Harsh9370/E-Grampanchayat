@@ -66,7 +66,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
 
-        // 🔥 VERY IMPORTANT: skip JWT for CORS preflight
+       
         if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
             return true;
         }
