@@ -14,12 +14,12 @@ import io.jsonwebtoken.security.Keys;
 @Component
 public class JwtUtil {
 
-    // ⚠️ IMPORTANT: keep key final and single
+    
     private final SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
     private final long EXPIRATION_TIME = 1000 * 60 * 60; // 1 hour
 
-    // ✅ TOKEN GENERATION
+   
     public String generateToken(String email, String role) {
 
         return Jwts.builder()
@@ -31,7 +31,7 @@ public class JwtUtil {
                 .compact();
     }
 
-    // ✅ COMMON METHOD TO GET CLAIMS
+  
     private Claims getClaims(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(key)
@@ -40,17 +40,17 @@ public class JwtUtil {
                 .getBody();
     }
 
-    // ✅ EXTRACT EMAIL (SUBJECT)
+    
     public String extractEmail(String token) {
         return getClaims(token).getSubject();
     }
 
-    // ✅ EXTRACT ROLE (THIS WAS MISSING)
+    
     public String extractRole(String token) {
         return getClaims(token).get("role", String.class);
     }
 
-    // ✅ VALIDATE TOKEN
+    
     public boolean isTokenValid(String token) {
         try {
             getClaims(token);
