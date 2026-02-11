@@ -28,7 +28,7 @@ public class CertificateApplicationController {
 
     private final CertificateApplicationService service;
 
-    // ================= APPLY CERTIFICATE =================
+    
     @PostMapping(
             value = "/apply",
             consumes = "multipart/form-data"
@@ -44,7 +44,7 @@ public class CertificateApplicationController {
         );
     }
 
-    // ================= MY APPLICATIONS =================
+   
     @GetMapping("/my")
     public ResponseEntity<List<CertificateApplication>> my(Authentication auth) {
         return ResponseEntity.ok(
@@ -52,7 +52,7 @@ public class CertificateApplicationController {
         );
     }
 
-    // ================= DOWNLOAD CERTIFICATE =================
+    
     @GetMapping("/{id}/download")
     public ResponseEntity<byte[]> downloadCertificate(
             @PathVariable Long id,
@@ -76,7 +76,7 @@ public class CertificateApplicationController {
                     .body(pdfBytes);
 
         } catch (Exception e) {
-            e.printStackTrace(); // IMPORTANT for debugging
+            e.printStackTrace(); 
             return ResponseEntity.internalServerError().build();
         }
     }
