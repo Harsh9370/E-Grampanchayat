@@ -22,30 +22,30 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // 🔹 Logged-in user email
+    
     @Column(nullable = false)
     private String userEmail;
 
-    // 🔹 PROPERTY_TAX / WATER_TAX
+   
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TaxType taxType;
 
-    // 🔹 UPI / CARD / NET_BANKING (ACTUAL FIELD)
+    
     @Column(nullable = false)
     private String paymentMethod;
 
     @Column(nullable = false)
     private Double amount;
     
- // add these fields
+ 
 
-    private String gateway;        // RAZORPAY / MOCK
-    private String transactionId;  // pay_xxx
-    private String status;         // SUCCESS / FAILED
+    private String gateway;        
+    private String transactionId;  
+    private String status;         
 
 
-    // 🔹 Payment timestamp (ACTUAL FIELD)
+   
     @Column(nullable = false)
     private LocalDateTime paidAt;
     
@@ -53,11 +53,9 @@ public class Payment {
     private LocalDate expiryDate;
 
 
-    /* =======================
-       🔥 COMPATIBILITY METHODS
-       ======================= */
 
-    // 👉 for PaymentServiceImpl (method)
+
+   
     public String getMethod() {
         return this.paymentMethod;
     }
@@ -66,7 +64,7 @@ public class Payment {
         this.paymentMethod = method;
     }
 
-    // 👉 for Receipt / Service (createdAt)
+   
     public LocalDateTime getCreatedAt() {
         return this.paidAt;
     }
