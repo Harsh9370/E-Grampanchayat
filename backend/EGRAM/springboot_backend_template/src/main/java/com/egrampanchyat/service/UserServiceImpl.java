@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final JwtUtil jwtUtil;   // ✅ JWT UTIL injected
+    private final JwtUtil jwtUtil;   
 
     @Override
     public User register(RegisterRequestDto dto) {
@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("User account is inactive");
         }
 
-        // ✅ JWT TOKEN GENERATION
+      
         String token = jwtUtil.generateToken(
                 user.getEmail(),
                 user.getRole().name()
@@ -72,7 +72,7 @@ public class UserServiceImpl implements UserService {
                 .name(user.getName())
                 .email(user.getEmail())
                 .role(user.getRole().name())
-                .token(token)                    // ✅ token added
+                .token(token)                    
                 .message("Login successful")
                 .build();
     }
