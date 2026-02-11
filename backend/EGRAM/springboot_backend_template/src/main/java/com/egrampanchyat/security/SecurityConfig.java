@@ -26,15 +26,15 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http
-            .cors() // 🔥 MUST for React
+            .cors() 
             .and()
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
 
-                // ✅ allow CORS preflight
+               
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
-                // ✅ public auth & swagger
+                
                 .requestMatchers(
                     "/api/auth/**",
                     "/swagger-ui/**",
@@ -42,10 +42,10 @@ public class SecurityConfig {
                     "/swagger-ui.html"
                 ).permitAll()
 
-                // 🔥 internal APIs
+                
                 .requestMatchers("/api/internal/**").permitAll()
 
-                // 🔒 everything else secured
+                
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
@@ -53,7 +53,7 @@ public class SecurityConfig {
         return http.build();
     }
 
-    // 🔥 THIS IS THE REAL CORS FIX
+    
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
 
