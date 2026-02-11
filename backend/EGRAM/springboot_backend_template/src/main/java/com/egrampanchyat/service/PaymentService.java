@@ -13,6 +13,6 @@ public interface PaymentService {
 
     Payment getPaymentById(Long id);
 
-    // 🔥 ADD THIS FOR ADMIN
+   
     List<Payment> getAllPayments();
 }
