@@ -18,7 +18,7 @@ public class CitizenProfileController {
 
     private final CitizenProfileService service;
 
-    // ✅ CREATE PROFILE
+    
     @PostMapping("/profile")
     public ResponseEntity<CitizenProfile> createProfile(
             @Valid @RequestBody CitizenProfileRequestDto dto,
@@ -28,7 +28,7 @@ public class CitizenProfileController {
         return ResponseEntity.ok(service.createProfile(email, dto));
     }
 
-    // ✅ GET MY PROFILE
+   
     @GetMapping("/profile")
     public ResponseEntity<CitizenProfile> getProfile(Authentication authentication) {
 
@@ -36,7 +36,7 @@ public class CitizenProfileController {
         return ResponseEntity.ok(service.getMyProfile(email));
     }
 
-    // ✅ UPDATE PROFILE (🔥 THIS WAS MISSING)
+    
     @PutMapping("/profile")
     public ResponseEntity<CitizenProfile> updateProfile(
             @Valid @RequestBody CitizenProfileRequestDto dto,
