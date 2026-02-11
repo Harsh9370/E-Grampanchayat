@@ -31,7 +31,7 @@ public class PaymentController {
     private final ReceiptService receiptService;
     private final RazorpayService razorpayService;
 
-    // ================= NORMAL PAYMENT =================
+  
     @PostMapping
     public ResponseEntity<Payment> pay(
             @RequestParam TaxType taxType,
@@ -47,7 +47,7 @@ public class PaymentController {
         );
     }
 
-    // ================= MY PAYMENTS =================
+   
     @GetMapping("/my")
     public ResponseEntity<List<Payment>> myPayments(Authentication authentication) {
         return ResponseEntity.ok(
@@ -55,7 +55,6 @@ public class PaymentController {
         );
     }
 
-    // ================= RECEIPT =================
     @GetMapping("/{id}/receipt")
     public ResponseEntity<byte[]> downloadReceipt(@PathVariable Long id)
             throws Exception {
@@ -72,7 +71,6 @@ public class PaymentController {
                 .body(pdf);
     }
 
-    // ================= RAZORPAY REAL FLOW =================
 
     // STEP 1: CREATE RAZORPAY ORDER
     @PostMapping("/razorpay/order")
@@ -92,7 +90,6 @@ public class PaymentController {
         );
     }
 
-    // STEP 2: VERIFY PAYMENT & SAVE
     @PostMapping("/razorpay/verify")
     public ResponseEntity<Payment> verifyRazorpayPayment(
             @RequestParam String razorpay_order_id,
@@ -101,14 +98,12 @@ public class PaymentController {
             @RequestParam TaxType taxType,
             Authentication authentication) throws Exception {
 
-        // 🔐 Verify signature (security)
         razorpayService.verifySignature(
                 razorpay_order_id,
                 razorpay_payment_id,
                 razorpay_signature
         );
 
-        // 💾 Save payment in DB
         Payment payment = paymentService.initiatePayment(
                 authentication.getName(),
                 taxType,
