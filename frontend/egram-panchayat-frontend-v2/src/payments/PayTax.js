@@ -29,7 +29,7 @@ function PayTax() {
     try {
       setLoading(true);
 
-      // STEP 1️⃣ Create Razorpay Order (backend)
+     
       const orderRes = await api.post(
         "/api/payments/razorpay/order",
         null,
@@ -38,7 +38,7 @@ function PayTax() {
 
       const { orderId, currency } = orderRes.data;
 
-      // STEP 2️⃣ Open Razorpay Checkout
+   
       const options = {
         key: "rzp_test_SB6obQQXDmKMcv", // test key
         amount: amount * 100,
@@ -48,7 +48,7 @@ function PayTax() {
         order_id: orderId,
 
         handler: async function (response) {
-          // STEP 3️⃣ Verify payment (backend)
+          
           await api.post(
             "/api/payments/razorpay/verify",
             null,
