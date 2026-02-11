@@ -20,7 +20,7 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public Payment initiatePayment(String email, TaxType taxType, String method) {
 
-        // ✅ MOCK PAYMENT METHOD VALIDATION
+        
         if (!method.equalsIgnoreCase("UPI")
                 && !method.equalsIgnoreCase("CARD")
                 && !method.equalsIgnoreCase("NET_BANKING")
@@ -34,9 +34,6 @@ public class PaymentServiceImpl implements PaymentService {
         payment.setMethod(method.toUpperCase());
         payment.setAmount(calculateAmount(taxType));
         payment.setCreatedAt(LocalDateTime.now());
-
-        // ❌ NO status / gateway / transactionId
-        // ❌ kyunki entity me field hi nahi hai
 
         return paymentRepository.save(payment);
     }
