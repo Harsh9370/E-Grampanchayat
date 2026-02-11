@@ -19,7 +19,7 @@ public class OpenApiConfig {
                         .title("E-Gram Panchayat API")
                         .version("1.0")
                         .description("JWT Secured APIs"))
-                // 🔐 Enable JWT globally
+                
                 .addSecurityItem(new SecurityRequirement().addList("bearerAuth"))
                 .components(
                         new io.swagger.v3.oas.models.Components()
