@@ -8,7 +8,6 @@ function AdminRoute({ children }) {
     return <Navigate to="/" replace />;
   }
 
-  // 🔥 SAFE ROLE CHECK
   if (role && role.toUpperCase().includes("ADMIN")) {
     return children;
   }
